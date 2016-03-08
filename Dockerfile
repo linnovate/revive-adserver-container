@@ -15,7 +15,10 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
 RUN mkdir /revive
-RUN curl -L https://github.com/revive-adserver/revive-adserver/archive/v3.2.1.tar.gz | tar -zx -C /revive --strip-components=1
+RUN curl -L https://github.com/revive-adserver/revive-adserver/archive/v3.2.3.tar.gz | tar -zx -C /revive --strip-components=1
+
+ADD plugins /revive/
+ADD var-plugins/plugins /revive/var/
 
 RUN chown -R www-data:www-data /revive/var
 
@@ -24,13 +27,13 @@ RUN find /revive/var -type f -exec chmod 600 {} +
 RUN chmod 700 /revive/var
 
 RUN chown -R www-data:www-data /revive/plugins
-RUN chmod 700 /revive/plugins
 RUN chown -R www-data:www-data /revive/www/admin/plugins
 RUN chmod 700 /revive/www/admin/plugins
 
 ADD default.conf.php /revive/var/default.conf.php 
-ADD configure /revive/configure
-RUN chmod 700 /revive/configure
+ADD configure /srv/configure
+RUN chown root:root /srv/configure
+RUN chmod 700 /srv/configure
 
 WORKDIR /revive
 

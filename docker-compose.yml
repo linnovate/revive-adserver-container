@@ -1,18 +1,24 @@
 web:
   build: .
   ports:
-    - "80:80"
+    - "8081:80"
+    - "2222:22"
   links:
     - db
   environment:
     - MYSQL_HOST=db
-    - MYSQL_USER=root
+    - MYSQL_USER=user
     - MYSQL_PASSWORD=foobaz
     - MYSQL_DATABASE=localdatabase
+    - HTTP_HOSTNAME=localhost:8081
 db:
-  image: mysql
+  image: mysql:5.6
   ports:
     - "3306:3306"
   environment:
     - MYSQL_ROOT_PASSWORD=foobaz
+    - MYSQL_USER=user
+    - MYSQL_PASSWORD=foobaz
     - MYSQL_DATABASE=localdatabase
+  volumes:
+    - ./db-dump:/docker-entrypoint-initdb.d

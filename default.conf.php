@@ -51,14 +51,15 @@ statisticsSortBufferSize=
 schema=
 
 [webpath]
-admin="development/www/admin"
-delivery="development/www/delivery"
-deliverySSL="development/www/delivery"
-images="development/www/images"
-imagesSSL="development/www/images"
+admin="HTTP_HOSTNAME/www/admin"
+delivery="HTTP_HOSTNAME/www/delivery"
+deliverySSL="HTTP_HOSTNAME/www/delivery"
+images="HTTP_HOSTNAME/www/images"
+imagesSSL="HTTP_HOSTNAME/www/images"
 
 [file]
 asyncjs="asyncjs.php"
+asyncjsjs="async.js"
 asyncspc="asyncspc.php"
 click="ck.php"
 conversionvars="tv.php"
@@ -104,7 +105,7 @@ web=1
 url=1
 html=1
 text=1
-video=1
+video=
 
 [delivery]
 cacheExpire=1200
@@ -227,7 +228,7 @@ logOutgoing=1
 headers=
 qmailPatch=
 fromName=
-fromAddress="foo@bar.com"
+fromAddress="admin@example.com"
 fromCompany=
 useManagerDetails=
 
@@ -340,9 +341,50 @@ enableOnInstall=1
 useMergedFunctions=1
 
 [plugins]
+openXBannerTypes=1
+openXDeliveryLimitations=1
+openX3rdPartyServers=1
+openXReports=1
+openXDeliveryCacheStore=1
+openXMaxMindGeoIP=1
 
 [pluginGroupComponents]
+oxHtml=1
+oxText=1
+Client=1
+Geo=1
+Site=1
+Time=1
+ox3rdPartyServers=1
+oxReportsStandard=1
+oxReportsAdmin=1
+oxCacheFile=1
+oxMemcached=1
+oxMaxMindGeoIP=1
 
 [audit]
 enabled=1
 enabledForZoneLinking=
+
+[Client]
+sniff=1
+
+[deliveryHooks]
+postInit="deliveryLimitations:Client:initClientData"
+
+[oxCacheFile]
+cachePath=
+
+[oxMemcached]
+memcachedServers=
+memcachedExpireTime=
+
+[oxMaxMindGeoIP]
+geoipCountryLocation=
+geoipRegionLocation=
+geoipCityLocation=
+geoipAreaLocation=
+geoipDmaLocation=
+geoipOrgLocation=
+geoipIspLocation=
+geoipNetspeedLocation=

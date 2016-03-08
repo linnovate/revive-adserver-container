@@ -2,3 +2,4 @@ sed 's/MYSQL_HOST/'"$MYSQL_HOST"'/' -i /revive/var/default.conf.php
 sed 's/MYSQL_USER/'"$MYSQL_USER"'/' -i /revive/var/default.conf.php
 sed 's/MYSQL_PASSWORD/'"$MYSQL_PASSWORD"'/' -i /revive/var/default.conf.php
 sed 's/MYSQL_DATABASE/'"$MYSQL_DATABASE"'/' -i /revive/var/default.conf.php
+sed 's/HTTP_HOSTNAME/'"$HTTP_HOSTNAME"'/' -i /revive/var/default.conf.php
